@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".adminActivity">
+
+    <LinearLayout
+        android:layout_weight=".5"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/allUsers"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAlignment="center"/>
+        </ScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight=".5"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        >
+
+        <EditText
+            android:id="@+id/idName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:hint="Enter Name"
+            android:layout_gravity="center"
+            />
+        <Button
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:textColor="@color/white"
+            android:text="ADD"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"/>
+        <Button
+            android:id="@+id/edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:textColor="@color/white"
+            android:text="EDIT"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"/>
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:textColor="@color/white"
+            android:text="DEL"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"/>
+        <Button
+            android:id="@+id/reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:textColor="@color/white"
+            android:text="Reset password"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"/>
+    </LinearLayout>
+</LinearLayout>
