@@ -3,6 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Public/AndroidStudioProjects/Login/app/src/main/res/layout/activity_add_user.xml" value="0.17395833333333333" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/Login/app/src/main/res/layout/activity_admin.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/Login/app/src/main/res/layout/activity_edit_user.xml" value="0.22" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/Login/app/src/main/res/layout/activity_main.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/Login/app/src/main/res/layout/activity_main2.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/Login/app/src/main/res/layout/activity_main3.xml" value="0.17395833333333333" />
+        <entry key="..\:/Users/Public/AndroidStudioProjects/Login/app/src/main/res/layout/activity_reset_password.xml" value="0.19202898550724637" />
         <entry key="..\:/Users/Public/AndroidStudioProjects/LoginPanelWithDatabase/app/src/main/res/layout/activity_main.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Public/AndroidStudioProjects/LoginPanelWithDatabase/app/src/main/res/layout/activity_main2.xml" value="0.16" />
       </map>

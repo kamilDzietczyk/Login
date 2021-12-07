@@ -29,15 +29,40 @@ public class DBHelper extends SQLiteOpenHelper {
                 + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + LOGIN_COL + " TEXT,"
                 + PASSWORD_COL + " TEXT,"
-                + ISADMIN_COL + " BOOLEAN)";
+                + ISADMIN_COL + " TEXT)";
         db.execSQL(query);
         //JASZCZUR/Klapaucius/Koozakk
-        db.execSQL("INSERT INTO " + TABLE_NAME+ "(login, password, admin) VALUES ('Kamil','7f069ee232e5a785072f69535710530818c24c20', false)");
-        db.execSQL("INSERT INTO " + TABLE_NAME+ "(login, password, admin) VALUES ('Aneta','48e6c1047535448535cd9395cc1bc43df5175f0d', false)");
-        db.execSQL("INSERT INTO " + TABLE_NAME+ "(login, password, admin) VALUES ('Małgorzata','438b9f9c7e6169d2f42ecbf611966dbd65206a7', true)");
+        db.execSQL("INSERT INTO " + TABLE_NAME+ "(login, password, admin) VALUES ('Kamil','7f069ee232e5a785072f69535710530818c24c20', 'true')");
+    }
+    public void deleteUser(String userName) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(TABLE_NAME, "login=?", new String[]{userName});
+        db.close();
     }
 
-    public void addNewCourse(String userLogin, String user_Password, Boolean userAdmin) {
+    public void updatePassword(String originStrringName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(PASSWORD_COL, "secure");
+
+        db.update(TABLE_NAME, values,"login=?",new String[]{originStrringName});
+        db.close();
+    }
+
+    public void updateNewUser(String originStrringName,String userLogin, String user_Password, String userAdmin) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(LOGIN_COL, userLogin);
+        values.put(PASSWORD_COL, user_Password);
+        values.put(ISADMIN_COL, userAdmin);
+
+        db.update(TABLE_NAME, values,"login=?",new String[]{originStrringName});
+        db.close();
+    }
+
+    public void addNewUser(String userLogin, String user_Password, String userAdmin) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -50,10 +75,42 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.close();
     }
+    public ArrayList<UserModel> readWhereUsername(String username) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursorCourses = db.rawQuery("SELECT * FROM user WHERE login = ? ", new String[] {username});
+
+        ArrayList<UserModel> courseModalArrayList = new ArrayList<>();
+
+        if (cursorCourses.moveToFirst()) {
+            do {
+                courseModalArrayList.add(new UserModel(cursorCourses.getString(1),
+                        cursorCourses.getString(2),
+                        cursorCourses.getString(3)));
+            } while (cursorCourses.moveToNext());
+        }
+        cursorCourses.close();
+        return courseModalArrayList;
+    }
 
     public ArrayList<UserModel> readWhere(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursorCourses = db.rawQuery("SELECT * FROM user WHERE login = ? AND password = ?", new String[] {username, SHA.encryptThisString(password)});
+
+        ArrayList<UserModel> courseModalArrayList = new ArrayList<>();
+
+        if (cursorCourses.moveToFirst()) {
+            do {
+                courseModalArrayList.add(new UserModel(cursorCourses.getString(1),
+                        cursorCourses.getString(2),
+                        cursorCourses.getString(3)));
+            } while (cursorCourses.moveToNext());
+        }
+        cursorCourses.close();
+        return courseModalArrayList;
+    }
+    public ArrayList<UserModel> readAll() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursorCourses = db.rawQuery("SELECT * FROM user ",null);
 
         ArrayList<UserModel> courseModalArrayList = new ArrayList<>();
 

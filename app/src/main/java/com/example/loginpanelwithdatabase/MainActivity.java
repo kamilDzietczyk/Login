@@ -43,9 +43,21 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if(i>0){
-                    Intent intent = new Intent(MainActivity.this, MainActivity2.class);
-                    intent.putExtra("name",dbHelper.readWhere(Login,Password).get(0).getLOGIN_COL());
-                    startActivity(intent);
+                    if(dbHelper.readWhere(Login,Password).get(0).getISADMIN_COL().equals("true")){
+                        Intent intent = new Intent(MainActivity.this, adminActivity.class);
+                        startActivity(intent);
+                    }else{
+                        if(dbHelper.readWhere(Login,Password).get(0).getPASSWORD_COL().equals(SHA.encryptThisString("secure"))){
+                            Intent intent = new Intent(MainActivity.this, ResetPassword.class);
+                            intent.putExtra("name", dbHelper.readWhere(Login, Password).get(0).getLOGIN_COL());
+                            startActivity(intent);
+                        }else {
+                            Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                            intent.putExtra("name", dbHelper.readWhere(Login, Password).get(0).getLOGIN_COL());
+                            startActivity(intent);
+                        }
+                    }
+
                 }else{
                     Toast.makeText(MainActivity.this, "User not found", Toast.LENGTH_SHORT).show();
                 }
